@@ -1,7 +1,7 @@
 # headers and icon 
 title: shin jung hyun
 info: backend developer@apr
-icon-pic: assets/img/mandu_icon.png
+icon-pic: assets/img/ieu.png
 
 # exclude these items when generated website in _site/index.html
 exclude:
