@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:wght@400;700;800&display=swap");
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+nav {
+  padding-bottom: 15px;
+}
+
+img {
+  max-width: 100%;
+}
+
+mark {
+  background-color: #fffaa1;
+}
+
+blockquote {
+  border-left: 2px #aaa solid;
+  padding-left: 7px;
+  font-style: italic;
+}
+
+hr {
+  color: #ddd;
+}
+
+table {
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  color: #666;
+}
+
+th {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  font-size: 26px;
+}
+
+footer span {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+footer .pure-menu-link {
+  color: #444;
+}
+
+footer .pure-menu-link:hover {
+  color: #111;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+
+
+/* RESPONSIVE CSS */
+
+@media (min-width: 48em) {
+  .sm-display {
+    display: none;
+  }
+
+  .content {
+    padding: 2em 3em 0;
+    margin-left: 25%;
+  }
+
+  .sidebar-info {
+    margin: 5% 2em 0;
+    text-align: right;
+  }
+
+  .brand-photo {
+    max-width: 250px;
+  }
+
+  .brand-title,
+  .brand-tagline {
+    text-align: right;
+  }
+
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+  }
+
+  .post-entry {
+    width: 70%;
+  }
+
+  .tags {
+    width: 30%;
+  }
+
+  footer .pure-menu-link {
+    padding: 0.5em 5px;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  .md-display {
+    display: none;
+  }
+
+  .brand-title,
+  .brand-tagline {
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .brand-photo {
+    max-width: 200px;
+  }
+
+  .post-entry {
+    width: 90%;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .tags {
+    width: 49%;
+  }
+
+  .journals {
+    max-width: 95%;
+  }
+
+  footer .pure-menu-link {
+    padding: 0 20px;
+  }
+}
+
+
+.content {
+  padding-top: 0;
+}
+
+.paginate {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.paginate ul,
+footer ul {
+  padding-left: 0px;
+}
+
+.paginate * {
+  font-family: "Open Sans", sans-serif;
+}
+
+#current-page {
+  padding: 0px 15px;
+}
+
+/* SEARCH */
+
+#search,
+.search_res p,
+#results-container {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+#results-container {
+  border: 1px solid black;
+}
+
+#search-input {
+  width: 94%;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px #ccc solid;
+  border-radius: 8px;
+}
+
+.search-icon {
+  font-size: 24px;
+}
