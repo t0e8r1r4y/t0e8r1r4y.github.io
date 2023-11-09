@@ -1,0 +1,32 @@
+I"ô<style>
+.category-content a {
+    text-decoration: none;
+    color: #4183c4;
+}
+
+.category-content a:hover {
+    text-decoration: underline;
+    color: #4183c4;
+}
+</style>
+
+<main>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="Essays">Essays</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/serial-communication">The Duality of Purpose and Work</a></li>
+        
+        </div>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="theory">theory</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/apache_druid-paper-reading">Paper Reading. Apache Druid - A Real-time Analytical Data store</a></li>
+        
+        </div>
+    
+    <br />
+    <br />
+</main>
+:ET

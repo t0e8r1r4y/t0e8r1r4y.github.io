@@ -47,15 +47,22 @@
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Purelog: for Writers" />
-<link rel="next" href="http://localhost:4000/2/" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Purelog: for Writers" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@Brennan K. Brown" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/","author":{"@type":"Person","name":"Brennan K. Brown"},"@type":"WebSite","description":"A responsive sidebar Jekyll theme using the Pure.css framework, designed for writers and bloggers of all kinds.","headline":"Purelog: for Writers","name":"Purelog: for Writers","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/","author":{"@type":"Person","name":"Brennan K. Brown"},"headline":"Purelog: for Writers","description":"A responsive sidebar Jekyll theme using the Pure.css framework, designed for writers and bloggers of all kinds.","@type":"WebSite","name":"Purelog: for Writers","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Purelog: for Writers" /><link rel="alternate" type="application/rss+xml" href="http://localhost:4000/feed.xml">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/dracula.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
 </head><body class="light-theme">
         
         <br/>
@@ -75,7 +82,7 @@
         <p></p>
     </div>
 
-    <div class="col-sm-8 col-sm-3">
+    <div class="col-lg-10 col-md-8">
         <h2>신 중 현 <span class="text-primary">(Shin Jung Hyun)</span></h2>
         <p></p>
         저는 현재 <a href="https://www.apr-in.com/" target="_blank" rel="noopener">APR</a>에서 에이지알과 관련된 서비스를 개발하고 있는 백엔드 개발자입니다. 현재 회사에서는 필요한 서비스를 적시에 완성도 있게 만들어 내기 위해 풀스택을 지향하고 있습니다. 백엔드 개발자이나 인프라, DB, 프론트, 앱개발 등 필요에 따라 여러 개발을 겸하고 있습니다.(◕▿◕)
@@ -85,7 +92,8 @@
         <code>>> 저는 프로덕트 중심적으로 업무를 수행하기 위해 개발에 필요한 여러 기술 스택과 조직문화에 관심이 있습니다. 올해는 <b>백엔드 개발자로서의 자리매김</b>과 풀스택 개발자로서 조직에 기여할 수 있는 연관 기술스택을 주로 학습하고 있으며, <b>애자일 기반의 개발문화</b>와 조직문화에 적응하며 성장하기 위해 노력하고 있습니다.</code>
         <p></p>
     </div>
-</div><!-- Back to top button -->
+</div>
+<!-- Back to top button -->
         <a id="button"></a>
 
         <!-- Toggle dark/light theme button -->
@@ -121,169 +129,108 @@
     <h2 class="content-subhead">📒 기술 블로그</h2><section class="post">
                 <header class="feed-header">
                     <h2 class="post-title">
-                        <a href="/a-comprehensive-guide-to-self-learning">
-                            A Comprehensive Guide to Self-Learning
+                        <a href="/apache_druid-paper-reading">
+                            Paper Reading. Apache Druid - A Real-time Analytical Data store
                         </a>
                     </h2>
                     <p class="post-meta">
                         Posted:
-                        November 3, 2020
+                        June 9, 2021
                         |
                         <br class="sm-display"/>
                         By
-                        <a class="post-author" href="#">Reid Doe</a>
+                        <a class="post-author" href="#">Jung Hyun Shin</a>
                         under
                         <span>
                             
-                                <a href="/tags/#Creativity">#Creativity</a>
+                                <a href="/tags/#Paper-reading">#Paper-reading</a>
+                            
+                        </span>
+                    </p>
+                </header>
+
+                <div class="post-description">
+                    <p class="md-display">
+                        <em>1. 드루이드 개발 목적
+
+
+1-1.드루이드란? ( 논문의 결론 부분 )
+
+드루이는 다음을 충족하는 데이터 스토어이다.
+
+
+  분산
+  컬럼 지향형
+  리얼타임 분석 데이터 스토어 (처리하는 데이터를 drill-down하게 aggregates 할 수 있도록 설계 됨)
+  고성능, 쿼리 지연이 낮도록 설계 됨.
+  스트리밍 데이터 처리와 fault-tolerant를 지원함.
+
+
+
+
+1-2. 드루이드 개발 목적 ( 논문의 도입 부분과 문제 정의 부분 )
+
+Druid was originally designed to solve problems around ingesting and exploring large quantities of transactional events (log data). → OLAP
+
+드루...</em>
+                    </p>
+                    <p class="sm-display">
+                        <em>1. 드루이드 개발 목적
+
+
+1-1.드루이드란? ( 논문의 결론 부분 )
+
+드루이는 다음을 충족하는 데이터 스토어이다.
+
+
+  분산
+  컬럼 지향형
+  리얼타임 분석 데이터 스토어 (처리하는 데이터를 drill-down하게 aggregates 할 수 있도록 설계 됨)
+  고성능, 쿼리 지연이 낮도록 설계 됨.
+  스트리밍 데이터 처리와 fault-tolerant를 지원함.
+
+
+
+
+1-2. 드루이드 개발 목적 ( 논문의 도입 부분과 문제 정의 부분 )
+
+Druid was originally designed to solve pro...</em>
+                    </p>
+                </div>
+            </section>
+            <br/><section class="post">
+                <header class="feed-header">
+                    <h2 class="post-title">
+                        <a href="/serial-communication">
+                            The Duality of Purpose and Work
+                        </a>
+                    </h2>
+                    <p class="post-meta">
+                        Posted:
+                        June 9, 2021
+                        |
+                        <br class="sm-display"/>
+                        By
+                        <a class="post-author" href="#">Jung Hyun Shin</a>
+                        under
+                        <span>
+                            
+                                <a href="/tags/#Purpose">#Purpose</a>
                             
                                 <a href="/tags/#Inspiration">#Inspiration</a>
                             
-                                <a href="/tags/#Habits">#Habits</a>
-                            
                         </span>
                     </p>
                 </header>
 
                 <div class="post-description">
                     <p class="md-display">
-                        <em>One of the most effective methods to understanding the materials that you’re studying is to be passionate about them. This is the beauty of MOOCs — the idea that you can pick and choose to learn exactly and only what you want to.
+                        <em>PART ONE: HAVING FAITH IN GRAND DREAMS. Understanding the why of the work is the most important thing that’s needed when starting out. It’s so easy to become discouraged when you’re in the the thick of the weeds, when you need to do difficult or tedious. Motivation and discipline to do such work comes from having a bigger picture — a purpose.
 
-Don’t jump into a new study without having a plan for it. Whenever you feel discouraged or frustrated, you can take a step back and look at the bigger picture.
-
-There...</em>
+This purpose comes from a place of realistic optimi...</em>
                     </p>
                     <p class="sm-display">
-                        <em>One of the most effective methods to understanding the materials that you’re studying is to be passionate about them. This is the beauty of MOOCs — the idea that you can pick and choose to learn exactly and only what you want to.
-
-Don’t jump into a new study without having a plan for it. Whenever...</em>
-                    </p>
-                </div>
-            </section>
-            <br/><section class="post">
-                <header class="feed-header">
-                    <h2 class="post-title">
-                        <a href="/a-glorious-example-post">
-                            A Glorious Example Post
-                        </a>
-                    </h2>
-                    <p class="post-meta">
-                        Posted:
-                        November 2, 2020
-                        |
-                        <br class="sm-display"/>
-                        By
-                        <a class="post-author" href="#">Yui Doe</a>
-                        under
-                        <span>
-                            
-                                <a href="/tags/#Jekyll">#Jekyll</a>
-                            
-                                <a href="/tags/#Markdown">#Markdown</a>
-                            
-                        </span>
-                    </p>
-                </header>
-
-                <div class="post-description">
-                    <p class="md-display">
-                        <em>
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-
-
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-
-
-  Curabitur blandit tempus portt...</em>
-                    </p>
-                    <p class="sm-display">
-                        <em>
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-
-
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur e...</em>
-                    </p>
-                </div>
-            </section>
-            <br/><section class="post">
-                <header class="feed-header">
-                    <h2 class="post-title">
-                        <a href="/welcome-to-jekyll">
-                            Welcome to Jekyll!
-                        </a>
-                    </h2>
-                    <p class="post-meta">
-                        Posted:
-                        November 1, 2020
-                        |
-                        <br class="sm-display"/>
-                        By
-                        <a class="post-author" href="#">Andrew Smith</a>
-                        under
-                        <span>
-                            
-                                <a href="/tags/#Jekyll">#Jekyll</a>
-                            
-                                <a href="/tags/#Markdown">#Markdown</a>
-                            
-                        </span>
-                    </p>
-                </header>
-
-                <div class="post-description">
-                    <p class="md-display">
-                        <em>You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.
-
-Jekyll requires blog post files to be named according to the following format:
-
-YEAR-MONTH-DAY-title.MAR...</em>
-                    </p>
-                    <p class="sm-display">
-                        <em>You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.
-
-Jeky...</em>
-                    </p>
-                </div>
-            </section>
-            <br/><section class="post">
-                <header class="feed-header">
-                    <h2 class="post-title">
-                        <a href="/markdown-syntax-preview">
-                            Markdown Syntax Preview
-                        </a>
-                    </h2>
-                    <p class="post-meta">
-                        Posted:
-                        October 31, 2020
-                        |
-                        <br class="sm-display"/>
-                        By
-                        <a class="post-author" href="#">Eric F.</a>
-                        under
-                        <span>
-                            
-                                <a href="/tags/#Jekyll">#Jekyll</a>
-                            
-                                <a href="/tags/#Markdown">#Markdown</a>
-                            
-                        </span>
-                    </p>
-                </header>
-
-                <div class="post-description">
-                    <p class="md-display">
-                        <em>Philosophy:
-
-Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
-
-Readability, however, is emphasized above all else. A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. While Markdown’s syntax has been influenced by several existing text-to-HTML filters — including Sete...</em>
-                    </p>
-                    <p class="sm-display">
-                        <em>Philosophy:
-
-Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
-
-Readability, however, is emphasized above all else. A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. W...</em>
+                        <em>PART ONE: HAVING FAITH IN GRAND DREAMS. Understanding the why of the work is the most important thing that’s needed when starting out. It’s so easy to become discouraged when you’re in the the thick of the weeds, when you need to do difficult or tedious. Motivation and discipline to do such work ...</em>
                     </p>
                 </div>
             </section>
@@ -301,13 +248,9 @@ Readability, however, is emphasized above all else. A Markdown-formatted documen
                     Page
                     1
                     of
-                    3
+                    1
                 </li>
-                    <li class="pure-menu-item">
-                        <a href="/2/" class="next-page">Next
-                                                                        🡒
-                        </a>
-                    </li>
+                    <li class="pure-menu-item">#</li>
 
             </ul>
         </div>
