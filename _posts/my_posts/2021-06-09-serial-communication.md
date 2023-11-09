@@ -1,5 +1,5 @@
 ---
-title: The Duality of Purpose and Work
+title: (Sample Page) The Duality of Purpose and Work
 date: 2021-06-09
 author: Jung Hyun Shin
 layout: post
@@ -8,6 +8,8 @@ tags:
   - Inspiration
 category: Essays
 ---
+
+<div class="highlight"> 샘플입니다. </div>
 
 **PART ONE: HAVING FAITH IN GRAND DREAMS.** Understanding the _why_ of the work is the most important thing that’s needed when starting out. It’s so easy to become discouraged when you’re in the the thick of the weeds, when you need to do difficult or tedious. Motivation and discipline to do such work comes from having a bigger picture — a purpose.
 

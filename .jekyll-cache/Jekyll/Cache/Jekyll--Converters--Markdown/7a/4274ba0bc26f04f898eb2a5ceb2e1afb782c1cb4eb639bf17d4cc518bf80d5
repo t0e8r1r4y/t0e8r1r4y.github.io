@@ -1,0 +1,52 @@
+I"<style>
+.category-content a {
+    text-decoration: none;
+    color: #4183c4;
+}
+
+.category-content a:hover {
+    text-decoration: underline;
+    color: #4183c4;
+}
+</style>
+
+<main>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="Essays">Essays</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/serial-communication">(Sample Page) The Duality of Purpose and Work</a></li>
+        
+        </div>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="theory">theory</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/cdc-debezium">Theory.Is the CDC &amp; Debeziumev necessary for our organization?</a></li>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/apache_druid-paper-reading">Paper Reading. Apache Druid - A Real-time Analytical Data store</a></li>
+        
+        </div>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="essay">essay</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/agile">Organizational Culture.Agile Process in Dev Org</a></li>
+        
+        </div>
+    
+        <div class="pure-u-1 tags">
+        <h2 id="hands-on">hands-on</h2>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/react-programing">Hands-on.Introduction to React programming</a></li>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/query-dsl">Hands-on.Extract statistical information with JPA QueryDsl</a></li>
+        
+            <li id="category-content" style="padding-bottom: 0.6em;"><a href="/terraform-first-copy">Hands-on.Building AWS Infrastructure with Terraform</a></li>
+        
+        </div>
+    
+    <br />
+    <br />
+</main>
+:ET

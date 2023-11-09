@@ -1,0 +1,51 @@
+I"ð<div>
+    
+    <div class="pure-u-1 tags">
+        <h3 id="Purpose">Purpose</h3>
+        <ul>
+        
+            <li><a href="/serial-communication">(Sample Page) The Duality of Purpose and Work</a></li>
+        
+        </ul>
+    </div>
+    
+    <div class="pure-u-1 tags">
+        <h3 id="Inspiration">Inspiration</h3>
+        <ul>
+        
+            <li><a href="/serial-communication">(Sample Page) The Duality of Purpose and Work</a></li>
+        
+        </ul>
+    </div>
+    
+    <div class="pure-u-1 tags">
+        <h3 id="Paper-reading">Paper-reading</h3>
+        <ul>
+        
+            <li><a href="/apache_druid-paper-reading">Paper Reading. Apache Druid - A Real-time Analytical Data store</a></li>
+        
+        </ul>
+    </div>
+    
+    <div class="pure-u-1 tags">
+        <h3 id="cuture">Cuture</h3>
+        <ul>
+        
+            <li><a href="/agile">Organizational Culture.Agile Process in Dev Org</a></li>
+        
+        </ul>
+    </div>
+    
+    <div class="pure-u-1 tags">
+        <h3 id="Hands-on experience">Hands-on experience</h3>
+        <ul>
+        
+            <li><a href="/terraform-first">Hands-on.Building AWS Infrastructure with Terraform</a></li>
+        
+        </ul>
+    </div>
+    
+    <br />
+    <br />
+</div>
+:ET
