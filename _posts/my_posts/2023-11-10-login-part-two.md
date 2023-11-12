@@ -1,5 +1,5 @@
 ---
-title: Hands-on.Improve Login Process Part2
+title: Hands-on.Add a login method
 date: 2023-11-10
 author: Jung Hyun Shin
 layout: post
@@ -13,5 +13,6 @@ category: hands-on
 <br>
 
 목차
+
 - 로그인 개선기 2부
 - 다양한 로그인 방식 추가
