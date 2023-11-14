@@ -72,8 +72,6 @@ footer .pure-menu-link:hover {
   text-decoration: none;
 }
 
-
-
 /* RESPONSIVE CSS */
 
 @media (min-width: 48em) {
@@ -106,7 +104,7 @@ footer .pure-menu-link:hover {
   }
 
   .post-entry {
-    width: 70%;
+    width: 100%;
   }
 
   .tags {
@@ -151,7 +149,6 @@ footer .pure-menu-link:hover {
     padding: 0 20px;
   }
 }
-
 
 .content {
   padding-top: 0;
