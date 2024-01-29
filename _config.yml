@@ -18,14 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: ""
-email:
+title: "TechLog: for Developers"
+email: "neuraldraw.tech@gmail.com"
 description:
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-repository:
-twitter:
-github:
+repository: t0e8r1r4y/t0e8r1r4y.github.io
+github: t0e8r1r4y
 icon-pic: /assets/img/ieu.png
 
 header_image: assets/profile.png
@@ -57,7 +56,7 @@ defaults:
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
       layout: "post"
-      author: Brennan K. Brown
+      author: Terry Shin
       avatar: assets/profile-sm.png
   - scope:
       path: ""
