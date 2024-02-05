@@ -1,0 +1,451 @@
+I"fg<h2 id="로그인-프로세스-만들기">로그인 프로세스 만들기</h2>
+<h3 id="문제정의">문제정의</h3>
+<h4 id="목표">목표</h4>
+<ul>
+  <li>사용자가  로그인을 하기 편리한 프로세스를 확립한다. 가급적 한번의 버튼 클릭으로 로그인을 할 수 있다.</li>
+  <li>데이터 분석 목적으로 사용자의 정보를 최대한 많이 수집할 수 있는 로그인 수단을 고려한다.</li>
+  <li>하나의 Auth 서버를 사용하여 여러개의 서비스를 로그인 할 수 있도록 설계한다.</li>
+</ul>
+
+<h5 id="기대효과">기대효과</h5>
+<ul>
+  <li>사용자는 한번의 버튼 클릭으로 로그인을 할 수 있다.</li>
+  <li>운영 관점에서 비용을 최소화 한다.</li>
+  <li>사용자 정보를 수집하고 이를 분석하여 서비스를 개선할 수 있도록 한다.</li>
+</ul>
+
+<hr />
+<h3 id="개략적인-설계안-작성하기">개략적인 설계안 작성하기</h3>
+<h4 id="사용자가-로그인하기-편리한-프로세스">사용자가 로그인하기 편리한 프로세스</h4>
+<h5 id="개략적인-설계안">개략적인 설계안</h5>
+<ul>
+  <li>사용자가 한번의 버튼 클릭을로 로그인을 하기위해서 로그인 절차와 회원가입 절차를 구분하여 설계할지 하나의 절차로 설계할지 의사결정이 필요하다.
+    <ul>
+      <li>최근 서비스들의 UX를 보면 외부 Third Party Login을 제공하는 벤더사들을 활용하는 경우 로그인과 회원가입 절차를 한 흐름으로 가져간다.</li>
+      <li>이메일 인증을 통해서 회원가입을 하는 경우에는 별도의 회원가입 화면이 표시되고 이메일 인증이 되면 로그인으로 이어지는 흐름을 제공한다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>개략적인 흐름을 간단하게 표현하면 아래와 같다.
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/b088c7fa-7278-444d-a768-b329b91aa913.png?response-content-disposition=inline&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20240205T141030Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=300&amp;X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=c9db7807aa5f969d0baa6d5d242eccec3e8a38ded089d51f5acbc930fd1d2697" /></p>
+  </li>
+  <li>처리 흐름
+    <ul>
+      <li>Web이던 App이던 Third Party Auth에 인증정보를 요청</li>
+      <li>Third Party Auth에서는 인증정보 응답</li>
+      <li>Client는 서버로 Third Party Auth에서 받은 정보 전달</li>
+      <li>Server는 Third Party Auth에 Client에서 받은 정보를 확인</li>
+      <li>검증 결과 응답</li>
+      <li>검증 결과에 따라 Clinet에 Server가 적절한 응답</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="데이터-분석목적으로-데이터-수집하기">데이터 분석목적으로 데이터 수집하기</h4>
+<h5 id="개략적인-설계안-1">개략적인 설계안</h5>
+<ul>
+  <li>인구 통계적 관점에서 데이터 수집
+    <ul>
+      <li>이름, 생년월일, 주소 등</li>
+    </ul>
+  </li>
+  <li>사용자와 커뮤니케이션 목적의 데이터 수집
+    <ul>
+      <li>이메일, 전화번호</li>
+    </ul>
+  </li>
+  <li>Third Party Login을 사용한다면 아래의 정보를 수집할 수 있다.
+    <ul>
+      <li>정보 제공 항목 ( 서버에서 요청으로 가져올 수 있는 항목 - 해당 정보는 각 디벨로퍼 센터에서 확인이 필요함 )
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/ab6f76ea-b226-4c83-ba96-dd67a2139f66.png" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="고려사항">고려사항</h5>
+<ul>
+  <li>개인정보는 한 개인을 식별할 수 있는 고유한 정보로서 법적으로 관리가 필요한 이슈가 발생한다. 따라서 위 내용 중 관리의 이슈가 생기는 부분에 대해서는 사전고지와 해당 데이터를 관리할 책임자가 필요하다.</li>
+  <li>사이드 프로젝트에서 사용할 것이므로 최소한으로 수집할 수 있도록 데이터를 설계한다.</li>
+</ul>
+
+<h4 id="auth-서버-공통으로-사용하기">Auth 서버 공통으로 사용하기</h4>
+<h5 id="개략적인-설계안-2">개략적인 설계안</h5>
+<p><img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/abb69e0b-640e-4334-9feb-78e86f667529.png" /></p>
+
+<ul>
+  <li>여러 서비스에서 하나의 Auth를 쓸 수 있도록 한다.
+    <ul>
+      <li>여러 서비스를 동시 다발적으로 개발하여 시장에서 테스트를 하고 반영할 수 있도록 하기 위함이다.</li>
+    </ul>
+  </li>
+  <li>초기 설계 구현 시 사용할 인프라
+    <ul>
+      <li>AWS Lambda를 서버로 두고 AWS에서 인프라 사용</li>
+      <li>보안상 필요한 것들은 WAF, SHEILD 등 함께 사용
+<a href="https://aws.amazon.com/ko/lambda/pricing/">참고자료</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h3 id="관련-기술-조사">관련 기술 조사</h3>
+<h4 id="oauth">OAuth</h4>
+<h5 id="정의">정의</h5>
+<ul>
+  <li>Open Authorization의 약자로 인터넷 사용자들이 비밀번호를 제공하지 않고, 다른 웹사이트상의 자신들의 정보에 대해 웹사이트나 애플리케이션의 접근권한을 부여할 수 있는 공통적인 수단으로 사용되는, 접근 위임을 위한 개방형 표준</li>
+</ul>
+<div class="highlight"> 인증이 아니라 인가를 제공하는 표준화된 규약이다.
+
+불특정 다수의 클라이언트가 직접 인증을 구현하지 않고 네이버나 구글(인증 제공자)의 인증에 의존. OAuth2.0를 활용해서 이러한 인증서비스(네이버 아이디로 로그인, Google로 로그인)를 제공하고 있으며 SSO와 비슷한 효과를 얻을 수 있다. 그러나 OAuth와 SSO는 절대 같은 의미가 아니다. </div>
+<p><a href="https://ko.wikipedia.org/wiki/OAuth">참고자료</a></p>
+<ul>
+  <li>OAuth 2.0.을 구성하는 4가지
+    <ul>
+      <li>Resource Owner : 리소스 소유자. 리소스 서버에 접근할 수 있도록 자격을 부여하는 주체</li>
+      <li>Client : 사용자가 사용하는 애플리케이션(웹, 앱의 형태)</li>
+      <li>Authorization Server : 권한을 관리해주는 서버. 클라이언트의 자격 접근을 확인하고 Access Token을 발급하여 권한을 부여하는 역할</li>
+      <li>Resource Server : 사용자의 보호된 자원을 관리하는 서버. AccessToken을 받고 응답을 제공함</li>
+    </ul>
+  </li>
+  <li>사용하는 토큰의 종류
+    <ul>
+      <li>Access Token : 사용자의 데이터에 접근하기 위해 필요한 자격증명. 특정 Client에 부여한 권한에 대한 정보가 담긴 문자열</li>
+      <li>Refresh Token : Access Token이 만료되었을 경우 이를 재발급하기 위한 목적.</li>
+      <li>보안의 목적으로 Access Token은 만료기간이 짧고, Refresh Token은 상대적으로 길다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="인증-방식의-종류">인증 방식의 종류</h5>
+<ul>
+  <li>Authorization Code Grant(권한 부여 승인 방식)
+    <ul>
+      <li>흐름도
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/131a4ff5-2359-48f4-a83c-11ffaf29400e.png" /></li>
+    </ul>
+  </li>
+  <li>Implicit Grant(암묵적 승인 방식)
+    <ul>
+      <li>흐름도
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/d04c1186-f1cc-46d3-a097-c1fb2a9a2629.png" /></li>
+    </ul>
+  </li>
+  <li>Resource Owner Password Credentials Grant(자원 소유자 자격 증명 승인 방식)
+    <ul>
+      <li>흐름도
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/f5eef94d-130e-4510-b5d3-249f0d267cd0.png" /></li>
+    </ul>
+  </li>
+  <li>Client Credentials Grant(클라이언트 자격 증명 승인 방식)
+    <ul>
+      <li>흐름도
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/24237326-a523-40a4-ab30-c427ec3f629e.png" /></li>
+    </ul>
+  </li>
+</ul>
+
+<p>관련 링크는 아래와 같다.
+<a href="https://zibro.tistory.com/7">참고자료</a></p>
+
+<div class="highlight"> 웹에서는 주로 1번 방식을 사용한다. 웹의 쿠키나 캐시는 탈취가 가능하기 때문이다. </div>
+<div class="highlight"> 앱서비스는 2,3,4의 흐름을 주로 가진다. 앱 자체에서 사용되는 sdk에서 Thrid party login을 제공하는 벤더사들 Auth 서버와 통신을 하여 이미 클라이언트 레벨에서 인증이 완료가 되고 그 인증 정보를 가지고 서버는 다시금 확인 절차만 가져가기 때문이다. </div>
+
+<h5 id="oauth-로그인을-제공하는-회사들의-인증-방식-및-제공정보">OAuth 로그인을 제공하는 회사들의 인증 방식 및 제공정보</h5>
+<ul>
+  <li>주요 로그인 수단
+    <ul>
+      <li>네이버
+        <ul>
+          <li>네이버 디벨로퍼 센터
+<a href="https://developers.naver.com/docs/login/devguide/devguide.md#3-4-4-접근-토큰-발급-요청">참고자료</a></li>
+        </ul>
+      </li>
+      <li>카카오
+        <ul>
+          <li>카카오 디벨로퍼 센터
+<a href="https://developers.kakao.com/">참고자료</a></li>
+        </ul>
+      </li>
+      <li>페이코 인증 서비스</li>
+      <li>애플
+        <ul>
+          <li>다른 회사와 다르게 OAuth 인증 Flow가 조금 다르다. 위 조사한 종류에서 암묵적 인증 방식을 따르는 것으로 보인다.</li>
+          <li>그래서 개인 프로젝트에서는 firebase auth에 수단을 추가하고 그것을 기준으로 처리하는 흐름으로 가져갔다.</li>
+        </ul>
+      </li>
+      <li>구글
+        <ul>
+          <li>특징
+            <ul>
+              <li>rest api와 firebase auth의 인증방식이 유사하기에 관련된 값들만 있다면 두 인증방식을 동시에 사용 할 수 있다.</li>
+              <li>사용하기에 한국어 레퍼런스가 많아서 손쉽게 정보를 구하고 쓸 수 있다.</li>
+              <li>스프링부트 프로젝트에서 firebas auth dependenciies는 아래와 같이 추가할 수 있다.</li>
+              <li>문서가 구글 디벨로퍼, 파이어베이스 문서 등 내용이 조금 산재되어있고, OAuth 관련 내용의 이해가 조금 부족하다면 혼선이 올 수 있다.</li>
+            </ul>
+          </li>
+          <li>파이어 베이스
+<a href="https://firebase.google.com/docs/admin/setup?hl=ko#java">참고자료</a></li>
+          <li>구글 디벨로퍼 센터
+<a href="https://developers.google.com/?hl=ko">참고자료</a></li>
+        </ul>
+      </li>
+      <li>페이스북(메타)
+        <ul>
+          <li>메타 디벨로퍼 센터
+<a href="https://developers.facebook.com/docs/facebook-login/guides/access-tokens#extending">참고자료</a></li>
+        </ul>
+      </li>
+      <li>라인
+        <ul>
+          <li>라인 디벨로퍼 센터
+<a href="https://developers.line.biz/en/">참고자료</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>국내 제공 회사들은 조금 더 많은 사용자 정보를 제공하는 경향이 있다. 물론 사용자 정보 제공 동의를 하지 않는다면 클라리언트나 서버에서 조회할 기회는 없지만, 사용성을 고려했을 때 노출되는 빈도가 훨씬 높다.</li>
+      <li>회사들 마다 차이는 있지만 Refresh Token 관리 정책은 차이가 존재한다. 해당 정보를 모든 Response 마다 제공하지 않거나, 관련 처리 자체를 자기네들이 하는 경우도 있다.</li>
+      <li>대부분 로그인 수단을 구현해본바, 로그인 프로세스 설계(기획적인 절차 포함)에 따라 적절히 관련 기술을 활용하면 된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="더-알아보면-좋은-웹-보안-sso">더 알아보면 좋은 웹 보안 SSO</h4>
+<h5 id="주요-용어-정리">주요 용어 정리</h5>
+<ul>
+  <li>SSO : Single Sign On</li>
+  <li>SAML : Security Assertion Markup Language</li>
+  <li>OAuth2 : Open Authorization 2</li>
+</ul>
+
+<h5 id="sso의-장점">SSO의 장점</h5>
+<ul>
+  <li>한 세트의 인증정보만으로 연관된 모든 사이트에 접근할 수 있기때문에 보안관리 측면에서 사용자경험을 개선</li>
+  <li>기존에 여러 곳에서 분산되어 관리되던 인증정보가 한 곳으로 집중되기 때문에 보안을 강화하기가 수월
+    <h5 id="cookie-기반-sso">Cookie 기반 SSO</h5>
+  </li>
+  <li>과거엔 Cookie를 이용하여 SSO를 구현했다고 한다. 하지만 여러가지 한계점이 존재했다.
+    <h5 id="saml이란-">SAML이란 ?</h5>
+  </li>
+  <li>
+    <p>IdP(ID 공급자)와 SP(서비스 공급자) 간 인증정보를 교환하기 위한 마크업 언어
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/1fbeb4b6-6455-4b0d-ac88-05dfdc89aafe.png" /></p>
+  </li>
+  <li>항공기 탑승과정을 통해 이해하는 SAML</li>
+  <li>항공기에 탑승하기 전에 항공사는 다른 승객의 보안을 보장하기 위해 귀하가 누구인지 확인해야 합니다. 따라서 정부에서 발급한 신분증으로 신원을 확인합니다. 신분증의 이름이 항공권의 이름과 일치하는지 확인하면 비행기에 탑승할 수 있습니다.</li>
+  <li>위의 예에서 정부는 ID 제공자이고 항공사는 서비스 제공자입니다. </li>
+  <li>정부에서 발급한 신분증은 SAML Assertion입니다. 정부 ID를 신청할 때 일반적으로 양식을 작성하고 사진을 찍어야 하며 경우에 따라 지문도 찍어야 합니다. 그런 다음 정부(ID 제공자)는 이러한 식별 속성을 데이터베이스에 저장하고 귀하의 신원과 관련된 실제 ID를 발급합니다. </li>
+  <li>탑승구에 도착하면 항공사(서비스 제공업체)가 사용자의 신분증( SAML Assertion )을 확인합니다. 항공사는 귀하의 세부 정보가 포함된 귀하의 신분증을 받아 유효성 검사를 실시합니다. 모든 절차가 끝나고 인증에 성공하면 항공사(서비스 제공업체)에서 항공기 탑승(서비스 이용)을 허용합니다.</li>
+</ul>
+
+<h5 id="saml-sso의-워크플로우-이해">SAML SSO의 워크플로우 이해</h5>
+<h5 id="idpid-공급자-initiated">IdP(ID 공급자) Initiated</h5>
+<p><img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/3ebf03bf-6e39-4533-94b0-5503b355a26d.png" /></p>
+
+<ul>
+  <li>사용자는 IdP에 먼저 접속 및 로그인</li>
+  <li>인증 완료시 IdP는 SP에게 SAML Response 전달</li>
+</ul>
+
+<h5 id="sp서비스-공급자-initiated">SP(서비스 공급자) Initiated</h5>
+<p><img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5fbdef24-39fc-4b9a-93c4-cb412417ed43.png" /></p>
+
+<ul>
+  <li>사용자가 SP의 서비스를 이용하기 위해 Access</li>
+  <li>SP는 사용자가 현재 미인증 상태임을 확인하고 IdP로 User를 Redirect(이때 사용자는 SAML Request를 하게 됨)</li>
+  <li>IdP는 필요한 경우 사용자에게 자격증명을 요청 (이미 인증된 경우 생략)</li>
+  <li>사용자는 IdP에 로그인</li>
+  <li>IdP는 SAML Response을 생성하여 사용자의 브라우저에 반환합니다.</li>
+</ul>
+
+<h5 id="saml-예제-코드-분석">SAML 예제 코드 분석</h5>
+<ul>
+  <li>IdP
+    <ul>
+      <li>SamlIdpApplication : 메인, 진입점</li>
+      <li>WebSecurityConfigurer : Spring Security 설정 파일</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="plain text">설정 내용 
+
+- 디폴트 유저 생성(DB가 따로 없음)
+- 페이지별 권한 세팅(스프링 시큐리티 기본기능)
+- SAML 응답을 위한 Filter 추가
+- KeyStoreLocator를 통해 동적으로 KeyStore 생성</code></pre>
+
+<ul>
+  <li>AbstractSamlPrincipalFactory, LocalSamlPrincipalFactory, SamlPrincipal</li>
+</ul>
+<pre><code class="java">//SP에게 전달받은 authnRequest(인증요청)으로부터 
+//SamlPrincipal을 생성하는 역할
+
+public SamlPrincipal createSamlPrincipal(@SuppressWarnings("rawtypes") SAMLMessageContext messageContext,
+                                         Authentication authentication) {
+    AuthnRequest authnRequest = (AuthnRequest) messageContext.getInboundSAMLMessage();
+    List<SamlAttribute> attributes = createAttributes(authentication);
+    return SamlPrincipal.builder(authentication.getName(), nameIdType, attributes)
+                        .serviceProviderEntityID(authnRequest.getIssuer().getValue())
+                        .requestID(authnRequest.getID())
+                        .assertionConsumerServiceUrl(authnRequest.getAssertionConsumerServiceURL())
+                        .relayState(messageContext.getRelayState())
+                        .build();
+}
+//템플릿 메소드 패턴을 이용하여 Saml속성을 Create하는 부분을 추상화.
+protected abstract List<SamlAttribute> createAttributes(Authentication authentication);
+&lt;/code&gt;
+&lt;/pre&gt;
+
+- SamlMessageHandler
+<pre><code class="java">//핵심역할 : authnRequest(인증요청)을 파싱, SamlResponse를 전송
+
+//실제 SamlResponse의 내용을 생성하는 역할은 SamlBuilder가 한다. 
+import static saml.example.idp.SamlBuilder.buildAssertion;
+import static saml.example.idp.SamlBuilder.buildIssuer;
+import static saml.example.idp.SamlBuilder.buildSAMLObject;
+import static saml.example.idp.SamlBuilder.buildStatus;
+import static saml.example.idp.SamlBuilder.signAssertion;
+
+//시그니쳐만 명시
+public SAMLMessageContext extractSAMLMessageContext(HttpServletRequest request,
+                                                        HttpServletResponse response)
+            throws ValidationException, SecurityException, MessageDecodingException
+
+//시그니쳐만 명시
+public void sendAuthnResponse(SamlPrincipal principal, HttpServletResponse response)
+            throws MarshallingException, SignatureException, MessageEncodingException</code></pre> 
+
+- SamlResponseFilter
+<pre><code class="java">//역할: 인증워크로드 정의 
+protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException {
+        try {
+            if (!request.getRequestURI().startsWith(ssoUrl)) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (isNull(authentication)
+                    || authentication instanceof AnonymousAuthenticationToken
+                    || !authentication.isAuthenticated()) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+            @SuppressWarnings("rawtypes")
+            SAMLMessageContext messageContext = samlMessageHandler.extractSAMLMessageContext(request, response);
+            SamlPrincipal principal = samlPrincipalFactory.createSamlPrincipal(messageContext, authentication);
+            samlMessageHandler.sendAuthnResponse(principal, response);
+        } catch (Exception e) {
+            throw new ServletException("Failed to send saml response.", e);
+        }
+    }</code></pre> 
+
+- SP
+  - SamlSpApplication : 메인, 진입점
+  - WebSecurityConfigurer : Spring Security 설정 파일
+<pre><code class="plain text">설정 내용 
+- 페이지별 권한 세팅(스프링 시큐리티 기본기능)
+- 인증 제공자로 SamlAuthenticationProvider 지정
+- 인증 진입점으로 SamlSsoEntryPoint 지정
+- SamlAssertionConsumeFilter를 보안필터로 추가</code></pre> 
+
+
+- SamlSsoEntryPoint  : 진입점 
+<pre><code class="java">//역할 : SAML 요청을 생성한 후 IdP로 Redirect 시킴 
+//redirect URL 
+// http://localhost:9105/sso?SAMLRequest=fZFfa8IwFMXf9ylK3mObVGsNtuI2ZIJjRese9pbG6wy0ictNZfv2U6swYfh4L%2BfcP78znnw3dXAAh9qajLBeRAIwym60%2BczIupzRlEzyhzHKpuZ7MW39zizhqwX0wRQRnD%2F6nqzBtgG3AnfQCtbLRUZ23u9FGNZWyXpn0YsRi5JQKiTB%2FDkjMYvTJN0CTUEmtN8fDmg1YIxWCiKWxsMtqOqoxEIi6gNkxLsWTg1sYW7QS%2BMzwiPOKIsoY2XUF4NY8GEvGfEPEhTOeqts%2FahN90nrjLASNQojG0DhlVhNXxeC9yJRdSIUL2VZ0OJtVZLg%2FUqEn4gcGRkUHYP7s%2FaXxSTvkInzxS6YWddIf9976ugN3Z6lAozX%2Fudm9327vMZB8n%2Fhj8O%2FF%2BWX8jbT%2FBc%3D
+</code></pre> 
+
+
+- SamlAssertionConsumeFilter
+<pre><code class="java">//역할 : SAML 응답을 통해 인증을 처리하는 워크로드 정의
+//IdP로 부터 이미 응답을 전달 받은 상태
+@Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+            throws AuthenticationException {
+        LOGGER.debug("Attempt authentication...");
+				//samlContextProvider를 통해 samlContext 가져옴
+        SamlContext samlContext = samlContextProvider.getLocalContext(request, response);
+        SamlPreAuthenticationToken token = new SamlPreAuthenticationToken(samlContext);
+        return getAuthenticationManager().authenticate(token);
+    }</code></pre> 
+
+
+- SamlAuthenticationProvider 
+<pre><code class="java">//역할 : 인증 로직 처리
+@Override
+public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    SamlPreAuthenticationToken preAuthenticationToken = (SamlPreAuthenticationToken) authentication;
+    SamlContext samlContext = preAuthenticationToken.samlContext();
+    @SuppressWarnings("rawtypes") SAMLMessageContext messageContext = null;
+    try {
+        messageContext = extractSAMLMessageContext(samlContext.request());
+    } catch (MessageDecodingException | SecurityException e) {
+        LOGGER.error("Failed to decode saml request", e);
+        throw new InternalAuthenticationServiceException("Failed to decode saml request", e);
+    }
+    //saml 응답 가져오기 
+    Response samlResponse = (Response) messageContext.getInboundSAMLMessage();
+    
+    //로그인 성공 여부 확인
+    String statusCode = samlResponse.getStatus().getStatusCode().getValue();
+    if (!StatusCode.SUCCESS_URI.equals(statusCode)) {
+        LOGGER.error("SAML login failed. status code[{}]", statusCode);
+        throw new AuthenticationServiceException("SAML response status fail, code[" + statusCode + "]");
+    }
+    //assertionConsumer를 통해 userDetail 생성
+    UserDetails userDetails = assertionConsumer.consume(samlResponse);
+    LOGGER.info("Login user[{}]", userDetails);
+    List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER"); // for test!!
+
+    //인증완료 처리
+    SamlAuthenticationToken resultToken = new SamlAuthenticationToken(userDetails.getUsername(), authorities);
+    resultToken.setAuthenticated(true);
+    resultToken.setDetails(userDetails);
+
+    return resultToken;
+}&lt;/code&gt;&lt;/pre&gt;   
+
+
+- SimpleSamlAssertionConsumer 
+
+<pre><code class="java">//역할 : SAML 응답을 전달받아 UserDetail 생성 
+public UserDetails consume(Response samlResponse) throws AuthenticationException {
+    validateSignature(samlResponse);
+    checkAuthnInstant(samlResponse);
+    Assertion assertion = samlResponse.getAssertions().get(0);
+    LOGGER.debug("Assertion[{}]", SamlUtil.samlObjectToString(assertion));
+    return createUser(assertion);
+}</code></pre>    
+
+---
+#### 추가 고려사항
+##### Flutter SDK를 사용하지 않고 Native로 구현할 수 있을까?
+- 물론 가능하다. api를 요청하는 방식으로 OAuth 1번 방식대로 처리할 수 있지만, 해당 구현로직을 안드로이드 IOS 모두 구현하는 것 자체가 시간이 소요될 수 있어 의사결정이 필요한 부분이라 판단함
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5df793d1-4d4c-44bd-a11f-fd9db7c22c5f.png" /> 
+
+
+##### 관련 Redirect URL 처리는 어떻게 할 수 있을까?
+- Flutter SDK에서 컨트롤하는 웹뷰 페이지에 대해서는 직접 컨트롤 할 수 있는것도 없는 것도 있음
+- 이걸 컨트롤하는 것이 현실적으로 쉽지 않기 때문에 SDK를 사용하는 것이 편리할 수 있음
+
+##### 로그인 실패관련 로깅은 어떻게 하면 좋을까?
+
+##### 테스트 작성 시 무엇을 고려하면 좋을까?
+- 테스트의 어려움
+  - 외부 의존적인 테스트가 진행되어야 하기에, 테스트 흐름이 까다로움 → 해당 부분만 Mock Server를 두는 방식으로 처리하는 방식 등 염두
+
+##### 프로젝트 설정 시 고려 사항
+- 프로젝트를 설정할 때는 dev, stage, prod 등 환경별로 나눠서 처리하도록 한다.
+  - 가령 Firebase auth를 사용한다고하면 SSO 등을 제공하는데 이러한 부분들을 고려했을 때 환경별로 구분을 해두는 것이 유용해 보임
+
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/909fdd8f-7165-448f-b27a-085f76474576.png" /> 
+
+
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5d20c4c5-99ab-4dbe-b3ce-e01c3b7b0a97.png" /> 
+</GrantedAuthority></code></pre></SamlAttribute></SamlAttribute></code></pre>
+:ET

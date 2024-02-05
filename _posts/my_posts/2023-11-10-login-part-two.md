@@ -8,7 +8,7 @@ tags:
 category: hands-on
 ---
 
-로그인 프로세스 만들기
+# 로그인 프로세스 만들기  
 ---
 ### 문제정의
 #### 목표
@@ -39,6 +39,7 @@ category: hands-on
   - 검증 결과 응답
   - 검증 결과에 따라 Clinet에 Server가 적절한 응답
 
+---
 #### 데이터 분석목적으로 데이터 수집하기
 ##### 개략적인 설계안
 - 인구 통계적 관점에서 데이터 수집
@@ -47,15 +48,17 @@ category: hands-on
   - 이메일, 전화번호
 - Third Party Login을 사용한다면 아래의 정보를 수집할 수 있다.
   - 정보 제공 항목 ( 서버에서 요청으로 가져올 수 있는 항목 - 해당 정보는 각 디벨로퍼 센터에서 확인이 필요함 )
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/ab6f76ea-b226-4c83-ba96-dd67a2139f66.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=a26442f3cbeb9757c3c907ad126b5ffd5354a757fa94a5c8153cda2aa6bf77fc" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/ab6f76ea-b226-4c83-ba96-dd67a2139f66.png" /> 
 
 ##### 고려사항
 - 개인정보는 한 개인을 식별할 수 있는 고유한 정보로서 법적으로 관리가 필요한 이슈가 발생한다. 따라서 위 내용 중 관리의 이슈가 생기는 부분에 대해서는 사전고지와 해당 데이터를 관리할 책임자가 필요하다.
 - 사이드 프로젝트에서 사용할 것이므로 최소한으로 수집할 수 있도록 데이터를 설계한다.
 
+
+---
 #### Auth 서버 공통으로 사용하기
 ##### 개략적인 설계안
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/abb69e0b-640e-4334-9feb-78e86f667529.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=5b357626a8aeda181fc94418b1fd3615c044ad0bf0b2b65410f4d4338ff90e63" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/abb69e0b-640e-4334-9feb-78e86f667529.png" /> 
 
 - 여러 서비스에서 하나의 Auth를 쓸 수 있도록 한다.
   - 여러 서비스를 동시 다발적으로 개발하여 시장에서 테스트를 하고 반영할 수 있도록 하기 위함이다.
@@ -85,20 +88,20 @@ category: hands-on
 
 ##### 인증 방식의 종류
 - Authorization Code Grant(권한 부여 승인 방식)
-  - 흐름도
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/131a4ff5-2359-48f4-a83c-11ffaf29400e.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=7577f76b39f3906df1ddc8f73b4e85f78d29e13cdc291f43361c670561bd3308" /> 
+  - 흐름도  
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/131a4ff5-2359-48f4-a83c-11ffaf29400e.png" /> 
 
 - Implicit Grant(암묵적 승인 방식)
-  - 흐름도
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/d04c1186-f1cc-46d3-a097-c1fb2a9a2629.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=f55ea5f30aa1225763cfb7719813d557c32860fa20bf28ad5608ee396b3fd60d" /> 
+  - 흐름도  
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/d04c1186-f1cc-46d3-a097-c1fb2a9a2629.png" /> 
 
 - Resource Owner Password Credentials Grant(자원 소유자 자격 증명 승인 방식)
-  - 흐름도
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/f5eef94d-130e-4510-b5d3-249f0d267cd0.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=250f85037a72cf4971cd32c072785d14bee0603d1102fbe16a5f12f95ed917ae" /> 
+  - 흐름도  
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/f5eef94d-130e-4510-b5d3-249f0d267cd0.png" /> 
 
 - Client Credentials Grant(클라이언트 자격 증명 승인 방식)
-  - 흐름도
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/24237326-a523-40a4-ab30-c427ec3f629e.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=bc5aa8177e4d64db7644a821228c9371304203b4f6b33f3c20c834d712007a7d" /> 
+  - 흐름도  
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/24237326-a523-40a4-ab30-c427ec3f629e.png" /> 
 
 
 관련 링크는 아래와 같다.
@@ -141,7 +144,12 @@ category: hands-on
   - 회사들 마다 차이는 있지만 Refresh Token 관리 정책은 차이가 존재한다. 해당 정보를 모든 Response 마다 제공하지 않거나, 관련 처리 자체를 자기네들이 하는 경우도 있다.
   - 대부분 로그인 수단을 구현해본바, 로그인 프로세스 설계(기획적인 절차 포함)에 따라 적절히 관련 기술을 활용하면 된다.
 
+<br>
+---
+
 #### 더 알아보면 좋은 웹 보안 SSO
+<br>
+
 ##### 주요 용어 정리
 - SSO : Single Sign On 
 - SAML : Security Assertion Markup Language
@@ -149,12 +157,14 @@ category: hands-on
 
 ##### SSO의 장점
 - 한 세트의 인증정보만으로 연관된 모든 사이트에 접근할 수 있기때문에 보안관리 측면에서 사용자경험을 개선
-- 기존에 여러 곳에서 분산되어 관리되던 인증정보가 한 곳으로 집중되기 때문에 보안을 강화하기가 수월
+- 기존에 여러 곳에서 분산되어 관리되던 인증정보가 한 곳으로 집중되기 때문에 보안을 강화하기가 수월    
+
 ##### Cookie 기반 SSO 
-- 과거엔 Cookie를 이용하여 SSO를 구현했다고 한다. 하지만 여러가지 한계점이 존재했다.
+- 과거엔 Cookie를 이용하여 SSO를 구현했다고 한다. 하지만 여러가지 한계점이 존재했다.  
+
 ##### SAML이란 ?
 - IdP(ID 공급자)와 SP(서비스 공급자) 간 인증정보를 교환하기 위한 마크업 언어
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/1fbeb4b6-6455-4b0d-ac88-05dfdc89aafe.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d09ed49f5fcb202c20e9f34162f56176b5e97987d105d1c6fbdede3cca291e42" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/1fbeb4b6-6455-4b0d-ac88-05dfdc89aafe.png" /> 
 
 
 - 항공기 탑승과정을 통해 이해하는 SAML
@@ -165,13 +175,13 @@ category: hands-on
 
 ##### SAML SSO의 워크플로우 이해
 ##### IdP(ID 공급자) Initiated
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/3ebf03bf-6e39-4533-94b0-5503b355a26d.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=6b5a1cf22b0e276b54b91f7e8df5f5e4f838c205ee0f68e52bdeb7c06d6c5564" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/3ebf03bf-6e39-4533-94b0-5503b355a26d.png" /> 
 
 - 사용자는 IdP에 먼저 접속 및 로그인
 - 인증 완료시 IdP는 SP에게 SAML Response 전달
 
 ##### SP(서비스 공급자) Initiated
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5fbdef24-39fc-4b9a-93c4-cb412417ed43.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=e1e8326a890685785a9ff78c89a6a78690e049a4295bf0269c1b614d9ee2c85f" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5fbdef24-39fc-4b9a-93c4-cb412417ed43.png" /> 
 
 - 사용자가 SP의 서비스를 이용하기 위해 Access
 - SP는 사용자가 현재 미인증 상태임을 확인하고 IdP로 User를 Redirect(이때 사용자는 SAML Request를 하게 됨)
@@ -179,165 +189,198 @@ category: hands-on
 - 사용자는 IdP에 로그인
 - IdP는 SAML Response을 생성하여 사용자의 브라우저에 반환합니다.
 
+<br>
+<br>
 
 ##### SAML 예제 코드 분석
 - IdP
   - SamlIdpApplication : 메인, 진입점
-  - WebSecurityConfigurer : Spring Security 설정 파일
-<pre><code class="plain text">설정 내용 
+  - WebSecurityConfigurer : Spring Security 설정 파일   
+  <pre>
+    <code class="plain text">
+    설정 내용 
+    - 디폴트 유저 생성(DB가 따로 없음)
+    - 페이지별 권한 세팅(스프링 시큐리티 기본기능)
+    - SAML 응답을 위한 Filter 추가
+    - KeyStoreLocator를 통해 동적으로 KeyStore 생성
+    </code>
+  </pre> 
 
-- 디폴트 유저 생성(DB가 따로 없음)
-- 페이지별 권한 세팅(스프링 시큐리티 기본기능)
-- SAML 응답을 위한 Filter 추가
-- KeyStoreLocator를 통해 동적으로 KeyStore 생성</code></pre> 
+- AbstractSamlPrincipalFactory, LocalSamlPrincipalFactory, SamlPrincipal  
+  <pre>
+    <code class="java">
+      //SP에게 전달받은 authnRequest(인증요청)으로부터 
+      //SamlPrincipal을 생성하는 역할
 
-- AbstractSamlPrincipalFactory, LocalSamlPrincipalFactory, SamlPrincipal 
-<pre><code class="java">//SP에게 전달받은 authnRequest(인증요청)으로부터 
-//SamlPrincipal을 생성하는 역할
-
-public SamlPrincipal createSamlPrincipal(@SuppressWarnings("rawtypes") SAMLMessageContext messageContext,
-                                         Authentication authentication) {
-    AuthnRequest authnRequest = (AuthnRequest) messageContext.getInboundSAMLMessage();
-    List<SamlAttribute> attributes = createAttributes(authentication);
-    return SamlPrincipal.builder(authentication.getName(), nameIdType, attributes)
-                        .serviceProviderEntityID(authnRequest.getIssuer().getValue())
-                        .requestID(authnRequest.getID())
-                        .assertionConsumerServiceUrl(authnRequest.getAssertionConsumerServiceURL())
-                        .relayState(messageContext.getRelayState())
-                        .build();
-}
-//템플릿 메소드 패턴을 이용하여 Saml속성을 Create하는 부분을 추상화.
-protected abstract List<SamlAttribute> createAttributes(Authentication authentication);
-</code></pre> 
+      public SamlPrincipal createSamlPrincipal(@SuppressWarnings("rawtypes") SAMLMessageContext messageContext,
+                                              Authentication authentication) {
+          AuthnRequest authnRequest = (AuthnRequest) messageContext.getInboundSAMLMessage();
+          List< SamlAttribute> attributes = createAttributes(authentication);
+          return SamlPrincipal.builder(authentication.getName(), nameIdType, attributes)
+                              .serviceProviderEntityID(authnRequest.getIssuer().getValue())
+                              .requestID(authnRequest.getID())
+                              .assertionConsumerServiceUrl(authnRequest.getAssertionConsumerServiceURL())
+                              .relayState(messageContext.getRelayState())
+                              .build();
+      }
+      //템플릿 메소드 패턴을 이용하여 Saml속성을 Create하는 부분을 추상화.
+      protected abstract List< SamlAttribute> createAttributes(Authentication authentication)
+    </code>
+  </pre>    
 
 - SamlMessageHandler
-<pre><code class="java">//핵심역할 : authnRequest(인증요청)을 파싱, SamlResponse를 전송
+  <pre>
+    <code class="java">
+      //핵심역할 : authnRequest(인증요청)을 파싱, SamlResponse를 전송
 
-//실제 SamlResponse의 내용을 생성하는 역할은 SamlBuilder가 한다. 
-import static saml.example.idp.SamlBuilder.buildAssertion;
-import static saml.example.idp.SamlBuilder.buildIssuer;
-import static saml.example.idp.SamlBuilder.buildSAMLObject;
-import static saml.example.idp.SamlBuilder.buildStatus;
-import static saml.example.idp.SamlBuilder.signAssertion;
+      //실제 SamlResponse의 내용을 생성하는 역할은 SamlBuilder가 한다. 
+      import static saml.example.idp.SamlBuilder.buildAssertion;
+      import static saml.example.idp.SamlBuilder.buildIssuer;
+      import static saml.example.idp.SamlBuilder.buildSAMLObject;
+      import static saml.example.idp.SamlBuilder.buildStatus;
+      import static saml.example.idp.SamlBuilder.signAssertion;
 
-//시그니쳐만 명시
-public SAMLMessageContext extractSAMLMessageContext(HttpServletRequest request,
-                                                        HttpServletResponse response)
-            throws ValidationException, SecurityException, MessageDecodingException
+      //시그니쳐만 명시
+      public SAMLMessageContext extractSAMLMessageContext(HttpServletRequest request,
+                                                              HttpServletResponse response)
+                  throws ValidationException, SecurityException, MessageDecodingException
 
-//시그니쳐만 명시
-public void sendAuthnResponse(SamlPrincipal principal, HttpServletResponse response)
-            throws MarshallingException, SignatureException, MessageEncodingException</code></pre> 
+      //시그니쳐만 명시
+      public void sendAuthnResponse(SamlPrincipal principal, HttpServletResponse response)
+                  throws MarshallingException, SignatureException, MessageEncodingException
+    </code>
+  </pre> 
 
 - SamlResponseFilter
-<pre><code class="java">//역할: 인증워크로드 정의 
-protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException {
-        try {
-            if (!request.getRequestURI().startsWith(ssoUrl)) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (isNull(authentication)
-                    || authentication instanceof AnonymousAuthenticationToken
-                    || !authentication.isAuthenticated()) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-            @SuppressWarnings("rawtypes")
-            SAMLMessageContext messageContext = samlMessageHandler.extractSAMLMessageContext(request, response);
-            SamlPrincipal principal = samlPrincipalFactory.createSamlPrincipal(messageContext, authentication);
-            samlMessageHandler.sendAuthnResponse(principal, response);
-        } catch (Exception e) {
-            throw new ServletException("Failed to send saml response.", e);
-        }
-    }</code></pre> 
+  <pre>
+    <code class="java">
+      //역할: 인증워크로드 정의 
+      protected void doFilterInternal(HttpServletRequest request,
+                                      HttpServletResponse response,
+                                      FilterChain filterChain) throws ServletException {
+          try {
+              if (!request.getRequestURI().startsWith(ssoUrl)) {
+                  filterChain.doFilter(request, response);
+                  return;
+              }
+              Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+              if (isNull(authentication)
+                      || authentication instanceof AnonymousAuthenticationToken
+                      || !authentication.isAuthenticated()) {
+                  filterChain.doFilter(request, response);
+                  return;
+              }
+              @SuppressWarnings("rawtypes")
+              SAMLMessageContext messageContext = samlMessageHandler.extractSAMLMessageContext(request, response);
+              SamlPrincipal principal = samlPrincipalFactory.createSamlPrincipal(messageContext, authentication);
+              samlMessageHandler.sendAuthnResponse(principal, response);
+          } catch (Exception e) {
+              throw new ServletException("Failed to send saml response.", e);
+          }
+      }
+    </code>
+  </pre> 
 
 - SP
   - SamlSpApplication : 메인, 진입점
   - WebSecurityConfigurer : Spring Security 설정 파일
-<pre><code class="plain text">설정 내용 
-- 페이지별 권한 세팅(스프링 시큐리티 기본기능)
-- 인증 제공자로 SamlAuthenticationProvider 지정
-- 인증 진입점으로 SamlSsoEntryPoint 지정
-- SamlAssertionConsumeFilter를 보안필터로 추가</code></pre> 
+  <pre>
+    <code class="plain text">
+      설정 내용 
+      - 페이지별 권한 세팅(스프링 시큐리티 기본기능)
+      - 인증 제공자로 SamlAuthenticationProvider 지정
+      - 인증 진입점으로 SamlSsoEntryPoint 지정
+      - SamlAssertionConsumeFilter를 보안필터로 추가
+    </code>
+  </pre> 
 
 
 - SamlSsoEntryPoint  : 진입점 
-<pre><code class="java">//역할 : SAML 요청을 생성한 후 IdP로 Redirect 시킴 
-//redirect URL 
-// http://localhost:9105/sso?SAMLRequest=fZFfa8IwFMXf9ylK3mObVGsNtuI2ZIJjRese9pbG6wy0ictNZfv2U6swYfh4L%2BfcP78znnw3dXAAh9qajLBeRAIwym60%2BczIupzRlEzyhzHKpuZ7MW39zizhqwX0wRQRnD%2F6nqzBtgG3AnfQCtbLRUZ23u9FGNZWyXpn0YsRi5JQKiTB%2FDkjMYvTJN0CTUEmtN8fDmg1YIxWCiKWxsMtqOqoxEIi6gNkxLsWTg1sYW7QS%2BMzwiPOKIsoY2XUF4NY8GEvGfEPEhTOeqts%2FahN90nrjLASNQojG0DhlVhNXxeC9yJRdSIUL2VZ0OJtVZLg%2FUqEn4gcGRkUHYP7s%2FaXxSTvkInzxS6YWddIf9976ugN3Z6lAozX%2Fudm9327vMZB8n%2Fhj8O%2FF%2BWX8jbT%2FBc%3D
-</code></pre> 
+  <pre>
+    <code class="java">
+    //역할 : SAML 요청을 생성한 후 IdP로 Redirect 시킴 
+    //redirect URL 
+    // http://localhost:9105/sso?SAMLRequest=fZFfa8IwFMXf9ylK3mObVGsNtuI2ZIJjRese9pbG6wy0ictNZfv2U6swYfh4L%2BfcP78znnw3dXAAh9qajLBeRAIwym60%2BczIupzRlEzyhzHKpuZ7MW39zizhqwX0wRQRnD%2F6nqzBtgG3AnfQCtbLRUZ23u9FGNZWyXpn0YsRi5JQKiTB%2FDkjMYvTJN0CTUEmtN8fDmg1YIxWCiKWxsMtqOqoxEIi6gNkxLsWTg1sYW7QS%2BMzwiPOKIsoY2XUF4NY8GEvGfEPEhTOeqts%2FahN90nrjLASNQojG0DhlVhNXxeC9yJRdSIUL2VZ0OJtVZLg%2FUqEn4gcGRkUHYP7s%2FaXxSTvkInzxS6YWddIf9976ugN3Z6lAozX%2Fudm9327vMZB8n%2Fhj8O%2FF%2BWX8jbT%2FBc%3D
+    </code>
+  </pre> 
 
 
 - SamlAssertionConsumeFilter
-<pre><code class="java">//역할 : SAML 응답을 통해 인증을 처리하는 워크로드 정의
-//IdP로 부터 이미 응답을 전달 받은 상태
-@Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
-        LOGGER.debug("Attempt authentication...");
-				//samlContextProvider를 통해 samlContext 가져옴
-        SamlContext samlContext = samlContextProvider.getLocalContext(request, response);
-        SamlPreAuthenticationToken token = new SamlPreAuthenticationToken(samlContext);
-        return getAuthenticationManager().authenticate(token);
-    }</code></pre> 
+  <pre>
+    <code class="java">
+      //역할 : SAML 응답을 통해 인증을 처리하는 워크로드 정의
+      //IdP로 부터 이미 응답을 전달 받은 상태
+      @Override
+      public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+              throws AuthenticationException {
+          LOGGER.debug("Attempt authentication...");
+          //samlContextProvider를 통해 samlContext 가져옴
+          SamlContext samlContext = samlContextProvider.getLocalContext(request, response);
+          SamlPreAuthenticationToken token = new SamlPreAuthenticationToken(samlContext);
+          return getAuthenticationManager().authenticate(token);
+      }
+    </code>
+  </pre> 
 
 
 - SamlAuthenticationProvider 
-<pre><code class="java">//역할 : 인증 로직 처리
-@Override
-public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-    SamlPreAuthenticationToken preAuthenticationToken = (SamlPreAuthenticationToken) authentication;
-    SamlContext samlContext = preAuthenticationToken.samlContext();
-    @SuppressWarnings("rawtypes") SAMLMessageContext messageContext = null;
-    try {
-        messageContext = extractSAMLMessageContext(samlContext.request());
-    } catch (MessageDecodingException | SecurityException e) {
-        LOGGER.error("Failed to decode saml request", e);
-        throw new InternalAuthenticationServiceException("Failed to decode saml request", e);
-    }
-    //saml 응답 가져오기 
-    Response samlResponse = (Response) messageContext.getInboundSAMLMessage();
-    
-    //로그인 성공 여부 확인
-    String statusCode = samlResponse.getStatus().getStatusCode().getValue();
-    if (!StatusCode.SUCCESS_URI.equals(statusCode)) {
-        LOGGER.error("SAML login failed. status code[{}]", statusCode);
-        throw new AuthenticationServiceException("SAML response status fail, code[" + statusCode + "]");
-    }
-    //assertionConsumer를 통해 userDetail 생성
-    UserDetails userDetails = assertionConsumer.consume(samlResponse);
-    LOGGER.info("Login user[{}]", userDetails);
-    List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER"); // for test!!
+  <pre>
+    <code class="java">//역할 : 인증 로직 처리
+      @Override
+      public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+          SamlPreAuthenticationToken preAuthenticationToken = (SamlPreAuthenticationToken) authentication;
+          SamlContext samlContext = preAuthenticationToken.samlContext();
+          @SuppressWarnings("rawtypes") SAMLMessageContext messageContext = null;
+          try {
+              messageContext = extractSAMLMessageContext(samlContext.request());
+          } catch (MessageDecodingException | SecurityException e) {
+              LOGGER.error("Failed to decode saml request", e);
+              throw new InternalAuthenticationServiceException("Failed to decode saml request", e);
+          }
+          //saml 응답 가져오기 
+          Response samlResponse = (Response) messageContext.getInboundSAMLMessage();
+          
+          //로그인 성공 여부 확인
+          String statusCode = samlResponse.getStatus().getStatusCode().getValue();
+          if (!StatusCode.SUCCESS_URI.equals(statusCode)) {
+              LOGGER.error("SAML login failed. status code[{}]", statusCode);
+              throw new AuthenticationServiceException("SAML response status fail, code[" + statusCode + "]");
+          }
+          //assertionConsumer를 통해 userDetail 생성
+          UserDetails userDetails = assertionConsumer.consume(samlResponse);
+          LOGGER.info("Login user[{}]", userDetails);
+          List< GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER"); // for test!!
 
-    //인증완료 처리
-    SamlAuthenticationToken resultToken = new SamlAuthenticationToken(userDetails.getUsername(), authorities);
-    resultToken.setAuthenticated(true);
-    resultToken.setDetails(userDetails);
+          //인증완료 처리
+          SamlAuthenticationToken resultToken = new SamlAuthenticationToken(userDetails.getUsername(), authorities);
+          resultToken.setAuthenticated(true);
+          resultToken.setDetails(userDetails);
 
-    return resultToken;
-}</code></pre> 
+          return resultToken;
+      }
+    </code>
+  </pre>   
 
 
-- SimpleSamlAssertionConsumer 
-
-<pre><code class="java">//역할 : SAML 응답을 전달받아 UserDetail 생성 
-public UserDetails consume(Response samlResponse) throws AuthenticationException {
-    validateSignature(samlResponse);
-    checkAuthnInstant(samlResponse);
-    Assertion assertion = samlResponse.getAssertions().get(0);
-    LOGGER.debug("Assertion[{}]", SamlUtil.samlObjectToString(assertion));
-    return createUser(assertion);
-}</code></pre> 
+- SimpleSamlAssertionConsumer
+  <pre>
+    <code class="java">
+      //역할 : SAML 응답을 전달받아 UserDetail 생성 
+      public UserDetails consume(Response samlResponse) throws AuthenticationException {
+          validateSignature(samlResponse);
+          checkAuthnInstant(samlResponse);
+          Assertion assertion = samlResponse.getAssertions().get(0);
+          LOGGER.debug("Assertion[{}]", SamlUtil.samlObjectToString(assertion));
+          return createUser(assertion);
+      }
+    </code>
+  </pre>       
 
 ---
 #### 추가 고려사항
 ##### Flutter SDK를 사용하지 않고 Native로 구현할 수 있을까?
-- 물론 가능하다. api를 요청하는 방식으로 OAuth 1번 방식대로 처리할 수 있지만, 해당 구현로직을 안드로이드 IOS 모두 구현하는 것 자체가 시간이 소요될 수 있어 의사결정이 필요한 부분이라 판단함
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5df793d1-4d4c-44bd-a11f-fd9db7c22c5f.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=5f13cd5138f6ca130f0a040387fc99ff9ad8e719e51dd2b4ef3bf9fde02c99aa" /> 
+- 물론 가능하다. api를 요청하는 방식으로 OAuth 1번 방식대로 처리할 수 있지만, 해당 구현로직을 안드로이드 IOS 모두 구현하는 것 자체가 시간이 소요될 수 있어 의사결정이 필요한 부분이라 판단함  
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5df793d1-4d4c-44bd-a11f-fd9db7c22c5f.png" /> 
 
 
 ##### 관련 Redirect URL 처리는 어떻게 할 수 있을까?
@@ -352,9 +395,9 @@ public UserDetails consume(Response samlResponse) throws AuthenticationException
 
 ##### 프로젝트 설정 시 고려 사항
 - 프로젝트를 설정할 때는 dev, stage, prod 등 환경별로 나눠서 처리하도록 한다.
-  - 가령 Firebase auth를 사용한다고하면 SSO 등을 제공하는데 이러한 부분들을 고려했을 때 환경별로 구분을 해두는 것이 유용해 보임
+  - 가령 Firebase auth를 사용한다고하면 SSO 등을 제공하는데 이러한 부분들을 고려했을 때 환경별로 구분을 해두는 것이 유용해 보임  
 
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/909fdd8f-7165-448f-b27a-085f76474576.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=8b6181f0238606223c054db5d1b505f2da79895fee0f1ee6306b9a8dec027877" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/909fdd8f-7165-448f-b27a-085f76474576.png" />   
 
 
-<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5d20c4c5-99ab-4dbe-b3ce-e01c3b7b0a97.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkcwRQIgQtEN68Gz9RvxU3wfEAe2%2BLTnx097Rb5Bj7uEXzN3DGwCIQDHCsHi8uqtrSYjh9QaxrA4ptWlzj%2Fg1y6fHmJ%2BsjDGVirtAgin%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDMxNzkyMzcwNDg2MCIMCfgT7h4lYtOQtmLLKsEC1PO9PJ2J4p5YQvEHPVvpojSlBDkLWEpwmgcDolOWX9fIaxuCcDOLUR508gqLyzZH%2Fp7F5au6iVaPUw3rMBkRhe5vS%2F5BhFk1Pali4M%2F%2FwpLNRdzSyVUtFIJBDWkrNfopWSH7Rc9Fs%2BYWAUWfFDgk5%2BZCbSgJDdsmlhXg%2BQMsq0HZ9ZC4PdctnULnZmqYI5Gna0D6QGSWgLMSQF9DNmAcKdXT722Z6RcfzbT2K36PH2KIpMm%2BmFzi0Xpj0lST0%2B79pKVCPn4y8zY%2F2dd%2FG%2FpPJVXv85WJm8B5XMqak1GbSMFe9ovohabWEJjvWV%2FptBPz6rJhbE42FiBq5phdoXSUYvkFgNEq9pLmobKH98kH7lOVMx2PljM7EPCd%2F32%2FVZh36P%2B5HILSVUsr0LVprXoW031pRqpBmiwXSTRxTO0CTbi6MOfCg64GOrMCARd%2FUsvQ37%2FRgZ41XjBLDGsqPnZnnbO1C%2FIXrGcTauH8oco0rYhVZg9FbvfhfguGHTcDDcApBEoEmERFuUjReVfgE7hgOx3LVTWneN1RS%2BmFBTznckhcXWyep4JW2lbFdBEEn7kyI71IcqJ2fsWwa%2B3yj6OltqQ%2FXE83K6JDiFskNouF2Nrwan9tYnA5rR8mYXWNKBlz3daESz6HHlmtkemaypWIOQOqJlpWuOlRwFiv%2FcwNQ7e1B0mmLjAyI12%2FOKPOkxOgEZfEXCf1KFWGTB6wpApyYcdvFf%2F3rRYSz1nzr%2BYjHl81Lub800twQDLnEBNVmbMVXXrneqVVRRQkCDOJANin%2F3N54QMXnSwohX05b2MAGCiOYm4nV%2FuomaUu89WMK3%2FVIbVHKqxwZZFTy9Oj8A%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240205T141030Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUUBN2YAODW5REC3B%2F20240205%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=5bd961a2be0b01716c219a63069a06711f812e76708f629aef331272153d9cad" /> 
+<img src="https://cdn-blog-contents.s3.ap-northeast-2.amazonaws.com/git_blog/20231110p11/5d20c4c5-99ab-4dbe-b3ce-e01c3b7b0a97.png" />   
